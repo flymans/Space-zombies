@@ -9,5 +9,9 @@ $(window).load(function(){
   var div = $(window);
   //we can now work out the ratio
   ratio = (div.width()/1024);
-  //while
-})
+  //while we are here we can grab the width for future use
+  newWidth = div.width();
+
+  //let's apply the ratio to our elements
+  main_call_setupContent();
+});
