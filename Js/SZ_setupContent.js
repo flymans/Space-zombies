@@ -14,4 +14,8 @@
     //Score
     $('#SZ0_3').css('width', 235*ratio);
     $('#SZ0_3').css('height', 100 * ratio)
+
+    //Any sprite sheets?
+      //Our Gun
+        setup_gun_SS();
   }

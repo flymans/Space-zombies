@@ -8,16 +8,19 @@
   <script src="Js/jquery-ui.js"></script>
   <script src="Js/SZ_main.js"></script>
   <script src="Js/SZ_setupContent.js"></script>
-  <script src="JS/SZ_movement.js"></script>
+  <script src="Js/SZ_movement.js"></script>
+  <script src="Js/ss.js"></script>
+  <script src="Js/SZ_SS.js"></script>
+  <script src="Js/SZ_touch.js"></script>
   <link href="Css/SZ_master.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
   <div id="SZ_maincontent">
     <img id="SZ0_0" onmousemove="rotateGun(event)" src="Images/SZ_background_image.jpg">
-    <img id="SZ0_1" src="Images/SZ_gun.png">
-    <img id="SZ0_2" src="Images/SZ_reload.png">
-    <img id="SZ0_3" src="Images/SZ_score.png">
+    <div id="SZ0_1"></div>
+    <div id="SZ0_2"><img src="Images/SZ_reload.png" onmousedown="reloadGun(event)"></div>
+    <div id="SZ0_3"><img src="Images/SZ_score.png"></div>
   </div>
 </body>
 
