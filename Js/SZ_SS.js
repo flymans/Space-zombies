@@ -38,6 +38,8 @@ function setup_gun_SS(){
     complete: function () {
       //use complete only when you set animations with 'loop:false'
       //alert("animation End");
+      //we need to reset our universal flag
+      canIclick = 0;
     }
   });
 }
