@@ -20,6 +20,13 @@ function SZ_createZombie(whichOne){
   setup_zombie_SS(whichOne);
   //put this new zombie through our animate function
   SZ_animateZombie(whichOne);
+  //bind the users mouse click to this zombie
+  $("#zombie"+whichOne).bind('mousedown touchstart', function (e) {
+    //first we want to fire the gun
+    fireGun(event);
+    //acknowledge the hit
+    zombieHit(whichOne-1);
+  })
 }
 
 //let's animate our zombie toward us
@@ -65,8 +72,12 @@ function SZ_animateZombie(whichOne){
 }
 //a function to completely reset our zombie
 function SZ_resetZombie(whichOne){
+  //reset this zombies hit counter
+  zombieHits_counter[whichOne-1]=0
   //assign a user friendly name for our div
   var $zombiex = $("#zombie"+whichOne);
+  //we need to stop this zombies animations
+  $zombiex.stop();
   //we want to position our zombie exactly at the tip of the planet
   var top_position = $('#SZ0_0').height()*0.435;
   //Xpos can be anywhere on our x axis

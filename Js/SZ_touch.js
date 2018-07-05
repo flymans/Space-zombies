@@ -21,3 +21,17 @@ function fireGun(e) {
       $("#SZ0_1").animateSprite("play", "fire");
     }
 }
+//array to keep track of the zombie hits
+var zombieHits_counter = [0,0,0,0,0,0];
+//array for each zombies limit
+var zombieHits_limits = [2,1,3,2,1,3];
+//this function will keep track of the zombie hits and act accordingly
+function zombieHit(whichOne){
+  //increment the counter
+  zombieHits_counter[whichOne]++;
+  //check to see if this zombie has reached its limit
+  if(zombieHits_counter[whichOne] >= zombieHits_limits[whichOne]){
+    //reset this zombie
+    SZ_resetZombie(whichOne+1);
+  }
+}
