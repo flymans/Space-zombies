@@ -37,10 +37,13 @@ function SZ_createZombie(whichOne){
   $("#bubble_zombie"+whichOne).css('transform','scale('+0+')');
   //bind the users mouse click to this zombie
   $("#zombie"+whichOne).bind('mousedown touchstart', function (e) {
+    //make sure the zombie is currently walking
+    if($("#zombie"+whichOne).css('opacity') !=0) {
     //first we want to fire the gun
     fireGun(event);
     //acknowledge the hit
     zombieHit(whichOne-1);
+  }
   })
 }
 
@@ -58,6 +61,8 @@ function SZ_animateZombie(whichOne){
   var $zombiex = $("#zombie"+whichOne);
   //reset the zombies scale value
   $zombiex.css('transform', 'scale('+0+')');
+  //reset the zombies opacity
+  $zombiex.css({opacity:1});
   //work out the amount the zombie has to come towards us
   var amty = ($(window).height()*0.7); // -($zombiex.height()*2); //topx);
   //each type of zombie will have their own walking style
@@ -111,10 +116,13 @@ function SZ_resetZombie(whichOne, zombieBubble_generate){
     //let's re-positionour bubble zombie to our stored value
     $bubble_zombiex.css({
       top: top_position+'px',
-      left: $zombiex.css("left")
+      left: $zombiex.css("left"),
+      opacity:1
     });
     //apply the scale
     $bubble_zombiex.css('transform', 'scale('+scalex_zombie[whichOne-1]+')');
+    //call our bubble zombie animation function
+    bubbleZombie_flyAway(whichOne);
   }
   //Xpos can be anywhere on our x axis
   var left_position = Math.floor(Math.random()*($('#SZ0_0').width()-ratio*50))+
@@ -124,7 +132,8 @@ function SZ_resetZombie(whichOne, zombieBubble_generate){
   //let's re-position our zombie
   $zombiex.css({
     top: top_position+'px',
-    left: left_position='px'
+    left: left_position='px',
+    opacity: 0
   });
   //finally let's make the zombie come towards the screen again
   SZ_animateZombie(whichOne);

@@ -16,3 +16,38 @@ function rotateGun(e) {
   //Let's rotate the gun!
   $('#SZ0_1').css('transform', 'rotate('+amountToRotate+'deg)');
 }
+
+//movement for our bubble zombie
+function bubbleZombie_flyAway(whichOne){
+  //assign a user friendly name for our div
+  var $zombiex = $("#bubble_zombie"+whichOne);
+  //first it should animate upwards with a bounce
+  $zombiex.animate({
+    //bring our zombie up the screen
+    top: "-="+100*ratio+"px",
+  },
+    {
+      easing: "easeOutElastic", duration: 400,
+      complete: function () {
+        //now the final animation where the bubble zombie disappears into space
+        $(this).delay(150).animate({
+          //slowly turn the alpha down
+          opacity: "-="+1,
+        },{
+          easing: "easeOutQuint",
+          duration: 1000,
+          step: function(now, fx){
+            //at each step we can adjust the scale to make it look smaller
+            if (fx.prop == "opacity" && fx.pos>=0.1) {
+              //work out the amount to scale
+              var xx = 0.5/(fx.pos);
+              //apply the scale
+              $(this).css('transform', 'scale('+xx+')');
+            }
+          },
+          complete: function() {
+          } //end of second complete function
+        }); //end of second animation
+      } //end of first complete function
+    });//end of first animation
+  }
