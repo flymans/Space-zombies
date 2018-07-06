@@ -66,7 +66,8 @@ function SZ_animateZombie(whichOne){
   //finally we are ready to animate
     $zombiex.delay(timex[whichOne-1]/3).animate({
       //first bring our zombie slowly down the screen
-      left: amty+ "px",},
+      top: amty + "px",
+      left: "+="+1+"px"},
       {
         easing:SZ_ease[whichOne-1],
         duration: timex[whichOne-1],
