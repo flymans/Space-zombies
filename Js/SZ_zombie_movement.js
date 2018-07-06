@@ -13,6 +13,8 @@ function SZ_createZombie(whichOne){
   //Xpos can be anywhere on our x axis
   var left_position = Math.floor(Math.random()*($('#SZ0_0').width())-(ratio*50))+
   (ratio*50);
+  //record this left position
+  leftx_zombie[whichOne-1]=left_position;
   //let's position our zombie
   div.style.left = left_position+'px';
   div.style.top = top_position + 'px';
@@ -31,6 +33,8 @@ function SZ_createZombie(whichOne){
   setup_zombie_SS(whichOne);
   //put this new zombie through our animate function
   SZ_animateZombie(whichOne);
+  //hide the bubble zombies at the start
+  $("#bubble_zombie"+whichOne).css('transform','scale('+0+')');
   //bind the users mouse click to this zombie
   $("#zombie"+whichOne).bind('mousedown touchstart', function (e) {
     //first we want to fire the gun
@@ -39,6 +43,12 @@ function SZ_createZombie(whichOne){
     zombieHit(whichOne-1);
   })
 }
+
+//we need to keep track of the current scale values
+var scalex_zombie = [0,0,0,0,0,0];
+//we also need to keep track of the left position
+var leftx_zombie = [0,0,0,0,0,0];
+
 
 //let's animate our zombie toward us
 function SZ_animateZombie(whichOne){
@@ -70,10 +80,12 @@ function SZ_animateZombie(whichOne){
               //stop all animation
               $(this).stop();
               //call a function to reset this zombie
-              SZ_resetZombie(whichOne);
+              SZ_resetZombie(whichOne,0);
             } else {
             //apply the scale
             $(this).css('transform','scale('+xx+')');
+            //record this new scale value
+            scalex_zombie[whichOne-1]=xx;
           }
         }
         },
@@ -82,7 +94,7 @@ function SZ_animateZombie(whichOne){
     });
 }
 //a function to completely reset our zombie
-function SZ_resetZombie(whichOne){
+function SZ_resetZombie(whichOne, zombieBubble_generate){
   //reset this zombies hit counter
   zombieHits_counter[whichOne-1]=0
   //assign a user friendly name for our div
@@ -91,9 +103,23 @@ function SZ_resetZombie(whichOne){
   $zombiex.stop();
   //we want to position our zombie exactly at the tip of the planet
   var top_position = $('#SZ0_0').height()*0.435;
+  //should we generate a bubble zombie?
+  if(zombieBubble_generate==1){
+    //assign a user friendly name for our bubble zombie div
+    var $bubble_zombiex = $("#bubble_zombie"+whichOne);
+    //let's re-positionour bubble zombie to our stored value
+    $bubble_zombiex.css({
+      top: top_position+'px',
+      left: $zombiex.css("left")
+    });
+    //apply the scale
+    $bubble_zombiex.css('transform', 'scale('+scalex_zombie[whichOne-1]+')');
+  }
   //Xpos can be anywhere on our x axis
   var left_position = Math.floor(Math.random()*($('#SZ0_0').width()-ratio*50))+
   (ratio*50);
+  //record this left position
+  leftx_zombie[whichOne-1] = left_position;
   //let's re-position our zombie
   $zombiex.css({
     top: top_position+'px',
