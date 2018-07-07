@@ -38,7 +38,8 @@ function SZ_createZombie(whichOne){
   //bind the users mouse click to this zombie
   $("#zombie"+whichOne).bind('mousedown touchstart', function (e) {
     //make sure the zombie is currently walking
-    if($("#zombie"+whichOne).css('opacity') !=0) {
+    if($("#zombie"+whichOne).css('opacity') !=0 && $("#SZ0_2").css('opacity')
+  !=1) {
     //first we want to fire the gun
     fireGun(event);
     //acknowledge the hit

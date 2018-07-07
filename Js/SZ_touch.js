@@ -5,20 +5,34 @@ var canIclick = 0;
 //this function is called to reload our gun
 function reloadGun(e){
   //Let's check if we can allow this to occur
-  if(canIclick==0){
+  if(canIclick==0 && $("#SZ0_2").css('opacity') == 1){
     //looks like we can so we better set our flag
     canIclick = 1;
     $("#SZ0_1").animateSprite("play","reload");
+    //reset the current shots
+    current_shots=0;
+    //hide the reload button
+    $("#SZ0_2").css({opacity:0});
   }
 }
-
+//place a maximum number of shots
+var max_shots=5;
+//keep track of current number of shots
+var current_shots=0;
 //this function is called to fire our gun
 function fireGun(e) {
   //Let's check if we can allow this to occur
-    if(canIclick==0){
+    if(canIclick==0 && $("#SZ0_2").css('opacity') != 1){
       //looks like we can so we beter set our flag
       canIclick = 1;
       $("#SZ0_1").animateSprite("play", "fire");
+      //increment our shots
+      current_shots++;
+      //check to see if we have reached the maximum
+      if(current_shots>=max_shots){
+        //show the reload button
+        $("#SZ0_2").css({opacity:1});
+      } //if
     }
 }
 //array to keep track of the zombie hits

@@ -39,6 +39,7 @@ img {
   top: 0;
   left: 0;
   cursor: pointer;
+  opacity: 0;
 }
 
 #SZ0_3 {
