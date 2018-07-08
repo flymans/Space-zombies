@@ -37,15 +37,24 @@ function SZ_createZombie(whichOne){
   $("#bubble_zombie"+whichOne).css('transform','scale('+0+')');
   //bind the users mouse click to this zombie
   $("#zombie"+whichOne).bind('mousedown touchstart', function (e) {
-    //make sure the zombie is currently walking
-    if($("#zombie"+whichOne).css('opacity') !=0 && $("#SZ0_2").css('opacity')
-  !=1) {
+    //make sure the reload button is showing
+    if($("#SZ0_2").css('opacity') !=1) {
     //first we want to fire the gun
     fireGun(event);
     //acknowledge the hit
-    zombieHit(whichOne-1);
-  }
-  })
+    if ($("#zombie"+whichOne).css('opacity')!=0) {
+      zombieHit(whichOne-1);
+      }
+    }
+  });
+  //bind the users mouse click to the bubble zombie
+  $("#bubble_zombie"+whichOne).bind('mousedown touchstart', function (e){
+    //make sure the reload button is showing
+    if ($("#SZ0_2").css('opacity')!=1) {
+        //first we want to fire the gun
+        fireGun(event);
+    }
+  });
 }
 
 //we need to keep track of the current scale values
