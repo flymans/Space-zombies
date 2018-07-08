@@ -35,6 +35,12 @@ function SZ_createZombie(whichOne){
   SZ_animateZombie(whichOne);
   //hide the bubble zombies at the start
   $("#bubble_zombie"+whichOne).css('transform','scale('+0+')');
+  //set the zindex for the zombie
+  $("#zombie"+whichOne).css("z-index", whichOne+100);
+  //set the zindex for the bubble_zombie
+  $("#bubble_zombie"+whichOne).css("z-index", whichOne);
+  //ensure the zindex for the gun is the highest
+  $("#SZ0_1").css("z-index", 200);
   //bind the users mouse click to this zombie
   $("#zombie"+whichOne).bind('mousedown touchstart', function (e) {
     //make sure the reload button is showing
@@ -102,6 +108,20 @@ function SZ_animateZombie(whichOne){
             $(this).css('transform','scale('+xx+')');
             //record this new scale value
             scalex_zombie[whichOne-1]=xx;
+            //check the depth levels
+            var i = 0
+            while (i<6) {
+              //check to see if the scale is bigger
+              if(scalex_zombie[whichOne-1]>scalex_zombie[i] && ($(this).zIndex()
+            < $("#zombie"+(i+1)).zIndex()) && scalex_zombie[i]!=00){
+              var i_index = $("#zombie"+(i+1)).zIndex();
+              //change the i one first
+              $("#zombie"+(i+1)).css("z-index", $(this).css("z-index"));
+              //now change this one
+              $(this).css("z-index", i_index);
+            } //end of if
+            i++;
+          } //end of while loop
           }
         }
         },
@@ -109,6 +129,9 @@ function SZ_animateZombie(whichOne){
       }
     });
 }
+//need to keep track of the current zindex for zombies
+var zindex_current = 0;
+
 //a function to completely reset our zombie
 function SZ_resetZombie(whichOne, zombieBubble_generate){
   //reset this zombies hit counter
@@ -145,6 +168,9 @@ function SZ_resetZombie(whichOne, zombieBubble_generate){
     left: left_position='px',
     opacity: 0
   });
+  //set the zindex for the zombie
+  zindex_current++;
+  $("#zombie"+whichOne).css("z-index", zindex_current);
   //finally let's make the zombie come towards the screen again
   SZ_animateZombie(whichOne);
 }
