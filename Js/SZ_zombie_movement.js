@@ -41,6 +41,8 @@ function SZ_createZombie(whichOne){
   $("#bubble_zombie"+whichOne).css("z-index", whichOne);
   //ensure the zindex for the gun is the highest
   $("#SZ0_1").css("z-index", 200);
+  //also ensure the zindex for the intro/game over is the highest
+  $('#SZ0_4').css("z-index", 201);
   //bind the users mouse click to this zombie
   $("#zombie"+whichOne).bind('mousedown touchstart', function (e) {
     //make sure the reload button is showing
@@ -97,12 +99,22 @@ function SZ_animateZombie(whichOne){
           if (fx.prop == "left") {
             //work out the amount to scale
             var xx = (fx.pos)*16;
+            if (gameEnded == 1){
+              xx = 999;
+            }
           //do a check to see if we should end this animation
             if(xx>15){
               //stop all animation
               $(this).stop();
               //call a function to reset this zombie
-              SZ_resetZombie(whichOne,0);
+              //SZ_resetZombie(whichOne,0);
+              //game over
+              $(this).css({opacity:0});
+              $(this).stop(true, true);
+              $(this).finish();
+              if(gameEnded==0 && xx!=999){
+                start_end_game(1);
+              }
             } else {
             //apply the scale
             $(this).css('transform','scale('+xx+')');
@@ -172,5 +184,5 @@ function SZ_resetZombie(whichOne, zombieBubble_generate){
   zindex_current++;
   $("#zombie"+whichOne).css("z-index", zindex_current);
   //finally let's make the zombie come towards the screen again
-  SZ_animateZombie(whichOne);
+  SZ_animateZombie(whichOne);  
 }

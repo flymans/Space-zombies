@@ -22,7 +22,7 @@ var current_shots=0;
 //this function is called to fire our gun
 function fireGun(e) {
   //Let's check if we can allow this to occur
-    if(canIclick==0 && $("#SZ0_2").css('opacity') != 1){
+    if(canIclick==0 && gameEnded==0 && $("#SZ0_2").css('opacity') != 1){
       //looks like we can so we beter set our flag
       canIclick = 1;
       $("#SZ0_1").animateSprite("play", "fire");
