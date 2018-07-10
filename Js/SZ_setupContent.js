@@ -30,6 +30,10 @@ var ratio_use = ratio;
     //make sure it is half way
     $('#SZ0_4').css('top', ($(window).height()/2)-((701 * ratio_use)/2));
 
+    $('#textx').css('width', '100%');
+    $('#textx').css('height', '50%');
+
+
     //Any sprite sheets?
       //Our Gun
         setup_gun_SS();
@@ -57,6 +61,8 @@ function start_end_game(whichOne) {
     $('#zombie_'+i).stop();
     $('#zombie_'+i).css({opacity:0});
     $('#bubble_zombie_'+i).css({opacity:0});
+    //set the zindex for the zombie
+    $("zombie"+i).css("z-index", i+100);
   } //for
   if (whichOne==0) {
     //START OF GAME
@@ -77,8 +83,18 @@ function start_end_game(whichOne) {
   gameEnded = 1;
 }//end of function
 
+//need to store the current score
+var current_score=0;
+//we can call this function to update the score
+function updateScore(){
+  $("#textx").text(current_score);
+}
+
 //start the game
 function start_game(){
+  //reset the score
+  current_score=0;
+  updateScore();
   //reset the zindex
   zindex_current = 0;
   //reload the gun

@@ -19,6 +19,9 @@ function rotateGun(e) {
 
 //movement for our bubble zombie
 function bubbleZombie_flyAway(whichOne){
+  //update the score
+  current_score++;
+  updateScore();
   //assign a user friendly name for our div
   var $zombiex = $("#bubble_zombie"+whichOne);
   //first it should animate upwards with a bounce

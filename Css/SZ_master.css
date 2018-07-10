@@ -48,6 +48,8 @@ img {
   top: 0;
   right: 0;
   opacity: 0;
+  background-image: url('../Images/SZ_score.png');
+  background-size: cover;
 }
 
 #SZ0_4 {
@@ -55,4 +57,15 @@ img {
   cursor: pointer;
   background-size: cover;
   opacity: 0;
+}
+
+#textx {
+  position: relative;
+  float: left;
+  top: 40%;
+  text-align: center;
+  font-size: 4vmax;
+  font-weight: bolder;
+  color: white;
+  font-family: "Arial Black";
 }
