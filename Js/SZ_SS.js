@@ -84,4 +84,20 @@ function setup_zombie_SS(whichOne){
         //alert("animation End");
       }
     });
+  //not to forget our special effects SS
+  setup_SpriteSheet("#zombie_effect"+whichOne, "Images/SZ_effect_ss.png",4,13,15);
+  //need to access a special function in our js/ss.js file
+  $("#zombie_effect"+whichOne).animateSprite({
+    fps: 10,
+    animations: {
+      z1: [0,1,2,3],
+    },
+    duration: 20,
+    loop: false,
+    complete: function(){
+      //use complete only when you set animations with 'loop: false'
+      //alert("animation End");
+      $("#zombie_effect"+whichOne).css({opacity:0});
+    }
+  });
 }

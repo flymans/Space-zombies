@@ -40,7 +40,7 @@ var zombieHits_counter = [0,0,0,0,0,0];
 //array for each zombies limit
 var zombieHits_limits = [2,1,3,2,1,3];
 //this function will keep track of the zombie hits and act accordingly
-function zombieHit(whichOne){
+function zombieHit(whichOne, xx, yy){
   //increment the counter
   zombieHits_counter[whichOne]++;
   //check to see if this zombie has reached its limit
@@ -48,4 +48,16 @@ function zombieHit(whichOne){
     //reset this zombie
     SZ_resetZombie(whichOne+1,1);
   }
+  //let's add in our special effect
+  var whichOne2 = whichOne + 1;
+  var $effect_zombiex =$("#zombie_effect"+whichOne2);
+  //let's re-position our bubble zombie to our stored value
+  $effect_zombiex.css({
+    top: yy + 'px',
+    left: xx + 'px',
+    opacity:1
+  });
+  $effect_zombiex.animateSprite("play", "z1");
+  //apply the scale
+  $effect_zombiex.css('transform', 'scale('+scalex_zombie[whichOne]+')');
 }

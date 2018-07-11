@@ -4,10 +4,14 @@ function SZ_createZombie(whichOne){
   var div = document.createElement('div');
   //and another for the bubble zombie SS
   var div2 = document.createElement('div');
+  //and another for the special effect SS
+  var div3 = document.createElement('div');
   //we need to hard code the CSS styles we want
   div.setAttribute('style', 'position:fixed; top:0; left:0;');
   //and the same for  our bubble zombie
   div2.setAttribute('style', 'position:fixed; top:0; left:0;');
+  //and the same for our special effect SS
+  div3.setAttribute('style', 'position:fixed; top: 0; left: 0;');
   //we want to position our zombie exactly at the tip of the planet
   var top_position = $('#SZ0_0').height()*0.435;
   //Xpos can be anywhere on our x axis
@@ -16,29 +20,40 @@ function SZ_createZombie(whichOne){
   //record this left position
   leftx_zombie[whichOne-1]=left_position;
   //let's position our zombie
-  div.style.left = left_position+'px';
+  div.style.left = left_position + 'px';
   div.style.top = top_position + 'px';
   //and the same for our bubble zombie
-  div2.style.left = left_position+'px';
+  div2.style.left = left_position + 'px';
   div2.style.top = top_position + 'px';
+  //and the same for our special effect SS
+  div3.style.left = left_position + 'px';
+  div3.style.top = top_position + 'px';
   //give it an id
   div.id = 'zombie' + whichOne;
   //also for our bubble zombie
   div2.id = 'bubble_zombie'+whichOne;
+  //also for our special effect SS
+  div3.id = 'zombie_effect'+whichOne;
   //finally let's add our zombie to the screen
   document.body.appendChild(div);
   //finally add in our bubble zombie to the screen too
   document.body.appendChild(div2);
+  //finally add in our special effect SS to the screen too
+  document.body.appendChild(div3);
   //put this new zombie through our SS function
   setup_zombie_SS(whichOne);
   //put this new zombie through our animate function
   SZ_animateZombie(whichOne);
   //hide the bubble zombies at the start
   $("#bubble_zombie"+whichOne).css('transform','scale('+0+')');
+  //ensure no hits are registered on the special effects
+  $("#zombie_effect"+whichOne).css('pointer-events', 'none');
   //set the zindex for the zombie
   $("#zombie"+whichOne).css("z-index", whichOne+100);
   //set the zindex for the bubble_zombie
   $("#bubble_zombie"+whichOne).css("z-index", whichOne);
+  //set the zindex for the special effect SS
+  $("#zombie_effect"+whichOne).css("z-index", whichOne+150);
   //ensure the zindex for the gun is the highest
   $("#SZ0_1").css("z-index", 200);
   //also ensure the zindex for the intro/game over is the highest
@@ -51,7 +66,8 @@ function SZ_createZombie(whichOne){
     fireGun(event);
     //acknowledge the hit
     if ($("#zombie"+whichOne).css('opacity')!=0) {
-      zombieHit(whichOne-1);
+      var offset = $(this).offset();
+      zombieHit(whichOne-1, e.pageX, e.pageY);
       }
     }
   });
@@ -184,5 +200,5 @@ function SZ_resetZombie(whichOne, zombieBubble_generate){
   zindex_current++;
   $("#zombie"+whichOne).css("z-index", zindex_current);
   //finally let's make the zombie come towards the screen again
-  SZ_animateZombie(whichOne);  
+  SZ_animateZombie(whichOne);
 }
