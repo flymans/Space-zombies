@@ -13,6 +13,8 @@ function reloadGun(e){
     current_shots=0;
     //hide the reload button
     $("#SZ0_2").css({opacity:0});
+    //play the reload sound
+    $.playSound('sounds/reload');
   }
 }
 //place a maximum number of shots
@@ -28,6 +30,8 @@ function fireGun(e) {
       $("#SZ0_1").animateSprite("play", "fire");
       //increment our shots
       current_shots++;
+      //play the fire sound
+      $.playSound('sounds/fire');
       //check to see if we have reached the maximum
       if(current_shots>=max_shots){
         //show the reload button
