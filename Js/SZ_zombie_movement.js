@@ -15,8 +15,8 @@ function SZ_createZombie(whichOne){
   //we want to position our zombie exactly at the tip of the planet
   var top_position = $('#SZ0_0').height()*0.435;
   //Xpos can be anywhere on our x axis
-  var left_position = Math.floor(Math.random()*($('#SZ0_0').width())-(ratio*50))+
-  (ratio*50);
+  var left_position = Math.random()*($('#SZ0_0').width()-(ratio*200)
+  -(ratio*90))+(ratio*90);
   //record this left position
   leftx_zombie[whichOne-1]=left_position;
   //let's position our zombie
@@ -98,7 +98,7 @@ function SZ_animateZombie(whichOne){
   //reset the zombies opacity
   $zombiex.css({opacity:1});
   //work out the amount the zombie has to come towards us
-  var amty = ($(window).height()*0.7); // -($zombiex.height()*2); //topx);
+  var amty = ($(window).height()*0.7);
   //each type of zombie will have their own walking style
   var SZ_ease = ['easeInSine','easeOutQuart','easeInOutQuad','easeInSine',
   'easeOutQuart','easeInOutQuad'];
@@ -186,14 +186,14 @@ function SZ_resetZombie(whichOne, zombieBubble_generate){
     bubbleZombie_flyAway(whichOne);
   }
   //Xpos can be anywhere on our x axis
-  var left_position = Math.floor(Math.random()*($('#SZ0_0').width()-ratio*50))+
-  (ratio*50);
+  var left_position = Math.random()*($('#SZ0_0').width()-(ratio*200)
+  -(ratio*90))+(ratio*90);
   //record this left position
   leftx_zombie[whichOne-1] = left_position;
   //let's re-position our zombie
   $zombiex.css({
-    top: top_position+'px',
-    left: left_position='px',
+    top: top_position + 'px',
+    left: left_position + 'px',
     opacity: 0
   });
   //set the zindex for the zombie
