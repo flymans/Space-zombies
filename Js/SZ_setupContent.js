@@ -6,6 +6,27 @@ var ratio_use = ratio;
     //need to resize all elements
     //first we set their normal sizes in CSS
 
+    //Main Div
+    $('#SZ_maincontent').css('width', 600*ratio);
+    $('#SZ_maincontent').css('height', 400*ratio);
+    //make sure it is half way
+    $('#SZ_maincontent').css('left', ($(window).width()/2)-((600*ratio)/2));
+    $('#SZ_maincontent').css('top', ($(window).height()/2)-((400*ratio)/2));
+
+    //box1
+    $('#box1').css('width', 631*ratio);
+    $('#box1').css('height', 457*ratio);
+    //make sure it is half way
+    $('#box1').css('left', ($(window).width()/2)-((637*ratio)/2));
+    $('#box1').css('top', ($(window).height()/2)-((457*ratio)/2));
+
+    //logo
+    $('#logo').css('width', 300*ratio);
+    $('#logo').css('height', 100*ratio);
+    //make sure it is half way
+    $('#logo').css('left', 0);
+    $('#logo').css('top', 0);
+
     //Gun
     $('#SZ0_1').css('width', 150 * ratio);
     $('#SZ0_1').css('height', 150 * ratio);
@@ -24,9 +45,9 @@ var ratio_use = ratio;
       ratio_use = $(window).height()/800;
     } //end if
     //apply this new ratio to our intro/game over
-    $('#SZ0_4').css('width', 868 * ratio_use);
-    $('#SZ0_4').css('height', 701 * ratio_use);
-    $('#SZ0_4').css('left', ($(window).width()/2)-((868 * ratio_use)/2));
+    $('#SZ0_4').css('width', 458 * ratio);
+    $('#SZ0_4').css('height', 370 * ratio);
+    $('#SZ0_4').css('left', 71* ratio);
     //make sure it is half way
     $('#SZ0_4').css('top', ($(window).height()/2)-((701 * ratio_use)/2));
 
@@ -76,7 +97,7 @@ function start_end_game(whichOne) {
     $('#SZ0_4').css('background-image', 'url(Images/splash_gameover.png)');
   }
   //make sure it is half way
-  $('#SZ0_4').css('top', ($(window).height()/2)-((701 * ratio_use)/2));
+  $('#SZ0_4').css('top', 0);
   //finally show the intro or game over image
   $('#SZ0_4').css({opacity:1});
   //stop the user from firing

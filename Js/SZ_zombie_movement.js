@@ -7,16 +7,16 @@ function SZ_createZombie(whichOne){
   //and another for the special effect SS
   var div3 = document.createElement('div');
   //we need to hard code the CSS styles we want
-  div.setAttribute('style', 'position:fixed; top:0; left:0;');
+  div.setAttribute('style', 'position:fixed; top:0; left:0; opacity: 0; position: absolute; display: inherit;');
   //and the same for  our bubble zombie
-  div2.setAttribute('style', 'position:fixed; top:0; left:0;');
+  div2.setAttribute('style', 'position:fixed; top:0; left:0; position: absolute;');
   //and the same for our special effect SS
-  div3.setAttribute('style', 'position:fixed; top: 0; left: 0;');
+  div3.setAttribute('style', 'position:fixed; top: 0; left: 0; position: absolute;');
   //we want to position our zombie exactly at the tip of the planet
   var top_position = $('#SZ0_0').height()*0.435;
   //Xpos can be anywhere on our x axis
   var left_position = Math.random()*($('#SZ0_0').width()-(ratio*200)
-  -(ratio*90))+(ratio*90);
+  -(ratio*50))+(ratio*50);
   //record this left position
   leftx_zombie[whichOne-1]=left_position;
   //let's position our zombie
@@ -35,9 +35,11 @@ function SZ_createZombie(whichOne){
   //also for our special effect SS
   div3.id = 'zombie_effect'+whichOne;
   //finally let's add our zombie to the screen
-  document.body.appendChild(div);
+  //document.body.appendChild(div);
+  $('#SZ_maincontent').append(div);
   //finally add in our bubble zombie to the screen too
-  document.body.appendChild(div2);
+  //document.body.appendChild(div2);
+  $('#SZ_maincontent').append(div2);
   //finally add in our special effect SS to the screen too
   document.body.appendChild(div3);
   //put this new zombie through our SS function
@@ -187,7 +189,7 @@ function SZ_resetZombie(whichOne, zombieBubble_generate){
   }
   //Xpos can be anywhere on our x axis
   var left_position = Math.random()*($('#SZ0_0').width()-(ratio*200)
-  -(ratio*90))+(ratio*90);
+  -(ratio*50))+(ratio*50);
   //record this left position
   leftx_zombie[whichOne-1] = left_position;
   //let's re-position our zombie

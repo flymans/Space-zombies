@@ -1,5 +1,7 @@
 html {
  height: 100%;
+ background-image:url('../Html_web/webBG.jpg');
+ background-size: cover;
 }
 
 body {
@@ -11,7 +13,7 @@ body {
 
 img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
   user-drag: none;
   user-select: none;
   -moz-user-select: none;
@@ -20,8 +22,29 @@ img {
   -ms-user-select: none;
 }
 
+#logo {
+  position: absolute;
+  z-index: 9999;
+  background: url('../Html_web/logo.png');
+  background-size: cover;
+  pointer-events: none;
+}
+
+#box1 {
+  position: absolute;
+  z-index: 9998;
+  background: url('../Html_web/box.png');
+  background-size: cover;
+  pointer-events: none;
+}
+
+#SZ_maincontent {
+  position: relative;
+  overflow: hidden;
+}
+
 #SZ0_0 {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   min-width: 100%;
@@ -29,14 +52,14 @@ img {
 }
 
 #SZ0_1 {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   right: 0;
   opacity: 0;
 }
 
 #SZ0_2 {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   cursor: pointer;
@@ -44,7 +67,7 @@ img {
 }
 
 #SZ0_3 {
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   opacity: 0;
@@ -53,7 +76,7 @@ img {
 }
 
 #SZ0_4 {
-  position: fixed;
+  position: absolute;
   cursor: pointer;
   background-size: cover;
   opacity: 0;
